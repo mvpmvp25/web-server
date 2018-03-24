@@ -1,32 +1,38 @@
-var express = require('express');
-var app = express();
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
 
-app.use(express.static('dist')); // server目录(访问静态资源文件)
- 
-/*
-app.get('/', function (req, res) {
-   res.sendFile( __dirname + "/dist/index.html" );
-});
-*/
 
-app.get('/login', function (req, res) {
-   res.sendFile( __dirname + "/dist/index.html" );
-});
+// 创建服务器
+http.createServer( function (request, response) {  
+   // 解析请求，包括文件名
+   var pathname = url.parse(request.url).pathname;
+   
+   // 输出请求的文件名
+   console.log("Request for " + pathname + " received.");
+   
+   // 从文件系统中读取请求的文件内容
+   fs.readFile(pathname.substr(1), function (err, data) {
+      if (err) {
+         console.log(err);
+         // HTTP 状态码: 404 : NOT FOUND
+         // Content Type: text/plain
+         response.writeHead(404, {'Content-Type': 'text/html'});
+      }else{	         
+         // HTTP 状态码: 200 : OK
+         // Content Type: text/plain
+         response.writeHead(200, {'Content-Type': 'text/html'});	
+         
+         // 响应文件内容
+         response.write(data.toString());		
+      }
+      //  发送响应数据
+      response.end();
+   });   
+}).listen(8087);
 
-app.get('/personal', function (req, res) {
-   res.sendFile( __dirname + "/dist/index.html" );
-});
+// 控制台会输出以下信息
+console.log('Server running at http://127.0.0.1:8087/'); 
 
-var server = app.listen(8060, function () {
- 
-  //var host = server.address().address
-  var port = server.address().port
-  
-  console.log('Server running at http://127.0.0.1:' + port);
-  
-  // 运行URL
-  // http://127.0.0.1:8060
-  // http://127.0.0.1:8060/login
-  // http://127.0.0.1:8060/personal
- 
-})
+// 运行URL(图片和css资源没有正确加载出来)
+// http://127.0.0.1:8060/index.html

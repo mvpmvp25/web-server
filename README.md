@@ -1,5 +1,6 @@
+
 # 安装
-npm install or npm install -D express
+nothing
 
 # 运行
 node dev-server
