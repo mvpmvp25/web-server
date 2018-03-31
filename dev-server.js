@@ -21,6 +21,55 @@ app.post('/api/login', function (req, res) {
 	}
 })
 
+app.get('/api/1.0/web/1.0/user/banner/list', function (req, res) {
+	if(true){
+		res.send({code: 666, message: "ok", status: true, data: {list:[{
+      "bar": "http://p1.meituan.net/deal/__44172153__6654046.jpg",
+      "spend": "1",
+    },{
+      "bar": "http://p1.meituan.net/deal/0b6e9d622fd22934b12bbad6fb9b28be54079.jpg",
+      "spend": "1",
+    },{
+      "bar": "http://p0.meituan.net/deal/b8123465167c4256f10196060e94c197249808.jpg",
+      "spend": "1",
+    }], total:79}});
+	}else{
+		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
+	}
+})
+
+app.get('/api/1.0/web/1.0/user/vendor/list', function (req, res) {
+	if(req.query.lon == "88" && req.query.lat == "99"){
+		res.send({code: 666, message: "ok", status: true, data: {list:[{
+      "name": "这个是第425984个商户",
+      "description": "saf蛙教教我吉林省",
+      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
+      "spend": "1",
+      "prepare_time": 1,
+      "business_time": "1",
+      "in_business": 0
+    },{
+      "name": "这个是第425984个商户",
+      "description": "saf蛙教教我吉林省",
+      "logo": "http://p0.meituan.net/shaitu/12c479a00e2d8bda7cb956f6cdada6dd158915.jpg",
+      "spend": "1",
+      "prepare_time": 1,
+      "business_time": "1",
+      "in_business": 0
+    },{
+      "name": "这个是第425984个商户",
+      "description": "saf蛙教教我吉林省",
+      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
+      "spend": "1",
+      "prepare_time": 1,
+      "business_time": "1",
+      "in_business": 0
+    }], total:79}});
+	}else{
+		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
+	}
+})
+
 app.get('/api/user', function (req, res) {
 	if(req.query.token == "abcd1234"){
 		res.send({name: "李大双", age: "19", code: "00", msg: "成功"});
