@@ -21,50 +21,272 @@ app.post('/api/login', function (req, res) {
 	}
 })
 
+app.get('/api/1.0/web/1.0/user/cart/list', function (req, res) {
+	if(true){
+		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
+	res.send({"status":true,"code":"0","message":"\u83b7\u53d6\u6570\u636e\u6210\u529f\uff01","data":{"shop_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","shop_address":"\u4e5d\u9f99\u7687\u540e\u5927\u9053\u4e1c","prepare_time":1,"vendor_distance":16715.52,"price_total":5524992,"shop_id":"1","product_list":[{"id":2,"product_id":10,"price":1222,"name":"\u8fd9\u662f\u7b2c10\u4e2a\u83dc","product_num":1,"has_package":true,"package":[{"id":8,"name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","son_package":[{"sid":"3","name":"u9009u98792","price":"2"},{"sid":"4","name":"u9009u98791","price":"5522526"}]},{"id":9,"name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","son_package":[{"sid":"3","name":"u9009u98792","price":"2"},{"sid":"2","name":"u9009u98794","price":"5"}]}]},{"id":1,"product_id":10,"price":1222,"name":"\u8fd9\u662f\u7b2c10\u4e2a\u83dc","product_num":1,"has_package":true,"package":[{"id":8,"name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","son_package":[{"sid":"3","name":"u9009u98792","price":"2"},{"sid":"2","name":"u9009u98794","price":"3"}]},{"id":9,"name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","son_package":[{"sid":"2","name":"u9009u98794","price":"5"},{"sid":"4","name":"u9009u98791","price":"1"},{"sid":"3","name":"u9009u98792","price":"2"}]}]}]}})
+	}else{
+		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
+	}
+})
+
+app.get('/api/1.0/web/1.0/user/food/detail', function (req, res) {
+	if(true){
+		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
+	res.send({
+            "status": true,
+            "code": 0,
+            "message": "",
+            "data": {
+                "id": 10,
+                "vendor_id": 1,
+                "food_no": "122",
+                "name": "测试菜名1add",
+                "description": "三生三世算是",
+                "logo": "",
+                "price": 1222,
+                "has_package": 1,
+                "type": 2,
+                "type_name": "测试分类名字",
+                "vendor_name": "这个是第1个商户",
+                "operating_status": 2,
+                "business_time": "16:55~12:00",
+                "packages": []
+            }
+        })
+	}else{
+		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
+	}
+})
+
 app.get('/api/1.0/web/1.0/user/banner/list', function (req, res) {
 	if(true){
 		res.send({code: 666, message: "ok", status: true, data: {list:[{
-      "bar": "http://p1.meituan.net/deal/__44172153__6654046.jpg",
-      "spend": "1",
+      "jump_url": "https://www.baidu.com/",
+      "image_path": "http://p1.meituan.net/deal/__44172153__6654046.jpg",
     },{
-      "bar": "http://p1.meituan.net/deal/0b6e9d622fd22934b12bbad6fb9b28be54079.jpg",
-      "spend": "1",
+      "jump_url": "https://www.baidu.com/",
+      "image_path": "http://p1.meituan.net/deal/0b6e9d622fd22934b12bbad6fb9b28be54079.jpg",
     },{
-      "bar": "http://p0.meituan.net/deal/b8123465167c4256f10196060e94c197249808.jpg",
-      "spend": "1",
+      "jump_url": "https://www.baidu.com/",
+      "image_path": "http://p0.meituan.net/deal/b8123465167c4256f10196060e94c197249808.jpg",
     }], total:79}});
 	}else{
 		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
 	}
 })
 
+app.get('/api/1.0/web/1.0/user/vendor/detail', function (req, res) {
+	if(true){
+		res.send({code: 666, message: "ok", status: true, data: {
+  "id": 1,
+  "name": "aaaa",
+  "description": "tty法师打发斯蒂芬斯蒂芬斯蒂芬斯蒂芬斯蒂芬是",
+  "logo": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521549613549&di=eab3068717056893ec18bf68a7411e12&imgtype=0&src=http%3A%2F%2Fimages.ali213.net%2Fpicfile%2Fpic%2F2013-01-23%2F927_110420130017-18.jpg",
+  "score": 2.5,
+  "tags": "121212,3333,4444",
+  "spend": "67",
+  "prepare_time": 8,
+  "contact": "aaaa",
+  "contact_num": "",
+  "mobile": "11112222",
+  "email": "as@11.com1",
+  "district": 165,
+  "address": "白石洲凡事都经过",
+  "business_time": "5:00 PM - 10:00",
+  "in_business": 0,
+  "status": 2,
+  "bank_info": {
+    "bank_num": "",
+    "bank_owner": "rrrr",
+    "bank_type": ""
+  },
+  "protocol_info": {
+    "start_time": "",
+    "end_time": "",
+    "is_forever": 0,
+    "rate": "12",
+    "settlement_cycle": 0,
+    "remark": "",
+    "status": 0
+  }
+}
+	});
+	}else{
+		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
+	}
+})
+
+app.get('/api/1.0/web/1.0/user/food/types', function (req, res) {
+	if(true){
+		res.send({code: 666, message: "ok", status: true, data: {
+  "list": [{
+    "id": 535,
+    "name": "地方撒几方面"
+		},{
+    "id": 5437,
+    "name": "防守打法更换粉丝"
+		},
+		{
+    "id": 5666,
+    "name": "方式登记发票"
+		},{
+    "id": 5437,
+    "name": "防守打法更换粉丝"
+		},
+		{
+    "id": 5666,
+    "name": "方式登记发票"
+		}]
+}
+	});
+	}else{
+		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
+	}
+})
+app.get('/api/1.0/web/1.0/user/food/list', function (req, res) {
+	if(true){
+		res.send({code: 666, message: "ok", status: true, data: {
+  "list": [{
+    "id": 1,
+    "name": "xxxx",
+	"jiaqian": 16,
+	"des":"cajsok dnhasoidhn dahsid aiohdia sdhiaos daosiuhd as hdioashd dh aosidh da",
+	"imgUrl": "http://news.k618.cn/society/rd/201804/W020180407271440699691.jpg"
+		},{
+    "id": 1,
+    "name": "xxxx",
+	"jiaqian": 16,
+	"des":"cajsok dnhasoidhn dahsid aiohdia sdhiaos daosiuhd as hdioashd dh aosidh da",
+	"imgUrl": ""
+		},
+		{
+    "id": 1,
+    "name": "xxxx",
+	"jiaqian": 16,
+	"des":"cajsok dnhasoidhn dahsid aiohdia sdhiaos daosiuhd as hdioashd dh aosidh da",
+	"imgUrl": "http://news.k618.cn/society/rd/201804/W020180407271440699691.jpg"
+		}]
+}
+	});
+	}else{
+		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
+	}
+})
+
 app.get('/api/1.0/web/1.0/user/vendor/list', function (req, res) {
-	if(req.query.lon == "88" && req.query.lat == "99"){
+	if(req.query.lon == "114.7033538" && req.query.lat == "22.5432757"){
 		res.send({code: 666, message: "ok", status: true, data: {list:[{
+			"id":101,
       "name": "这个是第425984个商户",
       "description": "saf蛙教教我吉林省",
       "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
-      "spend": "1",
-      "prepare_time": 1,
+      "spend": "4",
+	  "score": 3.5,
+	  "distance": 454,
+      "prepare_time": 7,
       "business_time": "1",
       "in_business": 0
     },{
+		"id":102,
       "name": "这个是第425984个商户",
       "description": "saf蛙教教我吉林省",
       "logo": "http://p0.meituan.net/shaitu/12c479a00e2d8bda7cb956f6cdada6dd158915.jpg",
-      "spend": "1",
-      "prepare_time": 1,
+      "spend": "5",
+      "prepare_time": 8,
+	  "score": 3.5,
+	  "distance": 454,
       "business_time": "1",
-      "in_business": 0
+      "in_business": 4
     },{
+		"id":103,
       "name": "这个是第425984个商户",
       "description": "saf蛙教教我吉林省",
       "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
-      "spend": "1",
-      "prepare_time": 1,
+      "spend": "6",
+	  "distance": 454,
+      "prepare_time": 9,
+	  "score": 3.5,
       "business_time": "1",
       "in_business": 0
-    }], total:79}});
+    },{
+		"id":104,
+      "name": "这个是第425984个商户",
+      "description": "saf蛙教教我吉林省",
+      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
+      "spend": "6",
+	  "distance": 454,
+      "prepare_time": 9,
+	  "score": 3.5,
+      "business_time": "1",
+      "in_business": 0
+    },{
+		"id":105,
+      "name": "这个是第425984个商户",
+      "description": "saf蛙教教我吉林省",
+      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
+      "spend": "6",
+	  "distance": 454,
+      "prepare_time": 9,
+	  "score": 3.5,
+      "business_time": "1",
+      "in_business": 0
+    },{
+		"id":106,
+      "name": "这个是第425984个商户",
+      "description": "saf蛙教教我吉林省",
+      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
+      "spend": "6",
+	  "distance": 454,
+      "prepare_time": 9,
+	  "score": 3.5,
+      "business_time": "1",
+      "in_business": 0
+    },{
+		"id":107,
+      "name": "这个是第425984个商户",
+      "description": "saf蛙教教我吉林省",
+      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
+      "spend": "6",
+	  "distance": 454,
+      "prepare_time": 9,
+	  "score": 3.5,
+      "business_time": "1",
+      "in_business": 0
+    },{
+		"id":108,
+      "name": "这个是第425984个商户",
+      "description": "saf蛙教教我吉林省",
+      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
+      "spend": "6",
+	  "distance": 454,
+      "prepare_time": 9,
+	  "score": 3.5,
+      "business_time": "1",
+      "in_business": 0
+    },{
+		"id":109,
+      "name": "这个是第425984个商户",
+      "description": "saf蛙教教我吉林省",
+      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
+      "spend": "6",
+	  "distance": 454,
+      "prepare_time": 9,
+	  "score": 3.5,
+      "business_time": "1",
+      "in_business": 0
+    },{
+		"id":110,
+      "name": "这个是第425984个商户",
+      "description": "saf蛙教教我吉林省",
+      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
+      "spend": "6",
+	  "distance": 454,
+      "prepare_time": 9,
+	  "score": 3.5,
+      "business_time": "1",
+      "in_business": 0
+    }], total:40}});
 	}else{
 		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
 	}
