@@ -4,7 +4,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // 获取post请求参数需要
 
-/*
+
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
@@ -12,7 +12,39 @@ app.all('*', function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
-*/
+
+
+app.get('/api/1.0/web/1.0/user/test/list', function (req, res) {
+	if(true){
+		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
+	res.send({
+  "status": true,
+  "code": "0",
+  "message": "\\u83b7\\u53d6\\u6570\\u636e\\u6210\\u529f\\uff01",
+  "data": [
+    {
+        "img": "https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png",
+        "title": "Meet hotel",
+        "des": "不是所有的兼职汪都需要风吹日晒",
+    },
+    {
+        "img": "https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png",
+        "title": "Meet hotel",
+        "des": "不是所有的兼职汪都需要风吹日晒",
+    },
+	{
+        "img": "https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png",
+        "title": "Meet hotel",
+        "des": "不是所有的兼职汪都需要风吹日晒",
+    }
+]
+});
+	}
+	else{
+		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
+	}
+})
+
 app.post('/api/login', function (req, res) {
 	if(req.body.userMobile == "123" && req.body.passWord == "abc"){
 		res.send({token: "abcd1234", code: "00", msg: "成功"});
@@ -403,7 +435,7 @@ app.get('/api/1.0/web/1.0/user/vendor/list', function (req, res) {
 
 app.get('/api/user', function (req, res) {
 	if(req.query.token == "abcd1234"){
-		res.send({name: "李大双", age: "19", code: "00", msg: "成功"});
+		res.send({"data":[{"id":"410000200204153643","name":"Patricia Taylor","age":26},{"id":"320000198509162573","name":"Helen Brown","age":27},{"id":"640000198111107878","name":"William Harris","age":28}]});
 	}else{
 		res.send({name: "", age: "", code: "01", msg: "toke不正确"});
 	}
