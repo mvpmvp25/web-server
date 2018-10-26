@@ -13,35 +13,31 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-
-app.get('/api/1.0/web/1.0/user/test/list', function (req, res) {
+app.get('/api/1.0/web/1.0/user/payment/sources', function (req, res) {
 	if(true){
 		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
-	res.send({
-  "status": true,
-  "code": "0",
-  "message": "\\u83b7\\u53d6\\u6570\\u636e\\u6210\\u529f\\uff01",
-  "data": [
-    {
-        "img": "https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png",
-        "title": "Meet hotel",
-        "des": "不是所有的兼职汪都需要风吹日晒",
-    },
-    {
-        "img": "https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png",
-        "title": "Meet hotel",
-        "des": "不是所有的兼职汪都需要风吹日晒",
-    },
-	{
-        "img": "https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png",
-        "title": "Meet hotel",
-        "des": "不是所有的兼职汪都需要风吹日晒",
-    }
-]
-});
+	res.send({"status":true,"data":{"total":1,"list":[
+	
+	{"sourceId":"card_1CGfPMBOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":1111,"brand":"Master"},
+	{"sourceId":"card_1CEfPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":2222,"brand":"Master"},
+	{"sourceId":"card_1CBfPMFOfYhptLUaknPUzh1x","isDefault":true,"sourceType":"credit","last4":3333,"brand":"Master"},
+	{"sourceId":"card_1CGAPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":4444,"brand":"Master"},
+	]}});
 	}
 	else{
 		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
+	}
+})
+
+app.get('/api/user', function (req, res) {
+	console.log(req.headers.cookie);
+	// 设置HttpOnly=true的cookie不能被js获取到
+	// 设置了Secure=true，那么这个cookie只能用https协议发送给服务器，用http协议是不发送的
+	res.cookie('bbbbbserver', 'zzzzz', { domain: '10.11.1.114', path: '/' });
+	if(req.query.token == "abcd1234"){
+		res.send({"data":[{"id":"410000200204153643","name":"Patricia Taylor","age":26},{"id":"320000198509162573","name":"Helen Brown","age":27},{"id":"640000198111107878","name":"William Harris","age":28}]});
+	}else{
+		res.send({name: "", age: "", code: "01", msg: "toke不正确"});
 	}
 })
 
@@ -50,60 +46,6 @@ app.post('/api/login', function (req, res) {
 		res.send({token: "abcd1234", code: "00", msg: "成功"});
 	}else{
 		res.send({token: "", code: "01", msg: "请输入正确的账号或密码"});
-	}
-})
-
-app.get('/api/1.0/web/1.0/user/order/list', function (req, res) {
-	if(true){
-		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
-	res.send({"status":true,"code":0,"message":"\u83b7\u53d6\u6570\u636e\u6210\u529f\uff01","data":{"list":[{"order_id":"201804121100126535969","symbol":"$","merchants_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","merchants_id":1,"order_status":6,"created_at": "2018-05-03 21:02:00","take_food_time":"21:00","order_grand_total":"5529674.00","take_food_code":null,"created_at": "2018-03-26 11:55:45","items":[{"product_id":"10","product_name":"\u8fd9\u662f\u7b2c10\u4e2a\u83dc","product_counts":5,"product_price":"1222.00","product_parent_id":0,"son":[{"product_id":"8-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":10},{"product_id":"8-4","product_name":"u9009u98791","product_counts":1,"product_price":"5522526.00","product_parent_id":10},{"product_id":"9-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":10}]},{"product_id":"16","product_name":"\u8003\u8651\u8003\u8651","product_counts":4,"product_price":"258.00","product_parent_id":0,"son":[{"product_id":"10-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":16},{"product_id":"10-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":16}]}]},{"order_id":"201804121406383040515","symbol":"$","merchants_name":"\u8fd9\u4e2a\u662f\u7b2c990\u4e2a\u5546\u6237","merchants_id":990,"order_status":1,"created_at": "2018-05-03 21:02:00","take_food_time":"21:00","order_grand_total":"70.00","take_food_code":null,"items":[{"product_id":"356","product_name":"\u897f\u6b27\u5c0f\u5403","product_counts":2,"product_price":"20.00","product_parent_id":0,"son":[{"product_id":"536234","product_name":"\u62c9\u8428\u7684\u6fc0\u53d1\u4e86","product_counts":1,"product_price":"10.00","product_parent_id":356},{"product_id":"83478","product_name":"ghjjfg","product_counts":1,"product_price":"10.00","product_parent_id":356}]},{"product_id":"654","product_name":"iv\u6a58\u68a8\u7eb1","product_counts":3,"product_price":"10.00","product_parent_id":0,"son":[{"product_id":"92438","product_name":"sdf","product_counts":1,"product_price":"10.00","product_parent_id":654}]}]},{"order_id":"201804121407228001220","symbol":"$","merchants_name":"\u8fd9\u4e2a\u662f\u7b2c990\u4e2a\u5546\u6237","merchants_id":990,"order_status":1,"created_at": "2018-05-03 21:02:00","take_food_time":"21:00","order_grand_total":"70.00","take_food_code":null,"items":[{"product_id":"356","product_name":"\u897f\u6b27\u5c0f\u5403","product_counts":2,"product_price":"20.00","product_parent_id":0,"son":[{"product_id":"536234","product_name":"\u62c9\u8428\u7684\u6fc0\u53d1\u4e86","product_counts":1,"product_price":"10.00","product_parent_id":356},{"product_id":"83478","product_name":"ghjjfg","product_counts":1,"product_price":"10.00","product_parent_id":356}]},{"product_id":"654","product_name":"iv\u6a58\u68a8\u7eb1","product_counts":3,"product_price":"10.00","product_parent_id":0,"son":[{"product_id":"92438","product_name":"sdf","product_counts":1,"product_price":"10.00","product_parent_id":654}]}]},{"order_id":"201804121407434104820","symbol":"$","merchants_name":"\u8fd9\u4e2a\u662f\u7b2c990\u4e2a\u5546\u6237","merchants_id":990,"order_status":1,"created_at": "2018-05-03 21:02:00","take_food_time":"21:00","order_grand_total":"70.00","take_food_code":null,"items":[{"product_id":"356","product_name":"\u897f\u6b27\u5c0f\u5403","product_counts":2,"product_price":"20.00","product_parent_id":0,"son":[{"product_id":"536234","product_name":"\u62c9\u8428\u7684\u6fc0\u53d1\u4e86","product_counts":1,"product_price":"10.00","product_parent_id":356},{"product_id":"83478","product_name":"ghjjfg","product_counts":1,"product_price":"10.00","product_parent_id":356}]},{"product_id":"654","product_name":"iv\u6a58\u68a8\u7eb1","product_counts":3,"product_price":"10.00","product_parent_id":0,"son":[{"product_id":"92438","product_name":"sdf","product_counts":1,"product_price":"10.00","product_parent_id":654}]}]},{"order_id":"201804121407550163050","symbol":"$","merchants_name":"\u8fd9\u4e2a\u662f\u7b2c990\u4e2a\u5546\u6237","merchants_id":990,"order_status":1,"created_at": "2018-05-03 21:02:00","take_food_time":"21:00","order_grand_total":"70.00","take_food_code":null,"items":[{"product_id":"356","product_name":"\u897f\u6b27\u5c0f\u5403","product_counts":2,"product_price":"20.00","product_parent_id":0,"son":[{"product_id":"536234","product_name":"\u62c9\u8428\u7684\u6fc0\u53d1\u4e86","product_counts":1,"product_price":"10.00","product_parent_id":356},{"product_id":"83478","product_name":"ghjjfg","product_counts":1,"product_price":"10.00","product_parent_id":356}]},{"product_id":"654","product_name":"iv\u6a58\u68a8\u7eb1","product_counts":3,"product_price":"10.00","product_parent_id":0,"son":[{"product_id":"92438","product_name":"sdf","product_counts":1,"product_price":"10.00","product_parent_id":654}]}]},{"order_id":"201804121410211675893","symbol":"$","merchants_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","merchants_id":1,"order_status":1,"created_at": "2018-05-03 21:02:00","take_food_time":"21:00","order_grand_total":"5529674.00","take_food_code":null,"items":[{"product_id":"10","product_name":"\u8fd9\u662f\u7b2c10\u4e2a\u83dc","product_counts":5,"product_price":"1222.00","product_parent_id":0,"son":[{"product_id":"8-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":10},{"product_id":"8-4","product_name":"u9009u98791","product_counts":1,"product_price":"5522526.00","product_parent_id":10},{"product_id":"9-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":10}]},{"product_id":"16","product_name":"\u8003\u8651\u8003\u8651","product_counts":4,"product_price":"258.00","product_parent_id":0,"son":[{"product_id":"10-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":16},{"product_id":"10-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":16}]}]},{"order_id":"201804121411090051724","symbol":"$","merchants_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","merchants_id":1,"order_status":1,"created_at": "2018-05-03 21:02:00","take_food_time":"21:00","order_grand_total":"5529674.00","take_food_code":null,"items":[{"product_id":"10","product_name":"\u8fd9\u662f\u7b2c10\u4e2a\u83dc","product_counts":5,"product_price":"1222.00","product_parent_id":0,"son":[{"product_id":"8-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":10},{"product_id":"8-4","product_name":"u9009u98791","product_counts":1,"product_price":"5522526.00","product_parent_id":10},{"product_id":"9-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":10}]},{"product_id":"16","product_name":"\u8003\u8651\u8003\u8651","product_counts":4,"product_price":"258.00","product_parent_id":0,"son":[{"product_id":"10-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":16},{"product_id":"10-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":16}]}]},{"order_id":"201804121640090015950","symbol":"$","merchants_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","merchants_id":1,"order_status":1,"created_at": "2018-05-03 21:02:00","take_food_time":"21:00","order_grand_total":"5529674.00","take_food_code":null,"items":[{"product_id":"10","product_name":"\u8fd9\u662f\u7b2c10\u4e2a\u83dc","product_counts":5,"product_price":"1222.00","product_parent_id":0,"son":[{"product_id":"8-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":10},{"product_id":"8-4","product_name":"u9009u98791","product_counts":1,"product_price":"5522526.00","product_parent_id":10},{"product_id":"9-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":10}]},{"product_id":"16","product_name":"\u8003\u8651\u8003\u8651","product_counts":4,"product_price":"258.00","product_parent_id":0,"son":[{"product_id":"10-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":16},{"product_id":"10-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":16}]}]},{"order_id":"201804121721091765443","symbol":"$","merchants_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","merchants_id":1,"order_status":1,"created_at": "2018-05-03 21:02:00","take_food_time":"21:00","order_grand_total":"5529674.00","take_food_code":null,"items":[{"product_id":"10","product_name":"\u8fd9\u662f\u7b2c10\u4e2a\u83dc","product_counts":5,"product_price":"1222.00","product_parent_id":0,"son":[{"product_id":"8-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":10},{"product_id":"8-4","product_name":"u9009u98791","product_counts":1,"product_price":"5522526.00","product_parent_id":10},{"product_id":"9-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":10}]},{"product_id":"16","product_name":"\u8003\u8651\u8003\u8651","product_counts":4,"product_price":"258.00","product_parent_id":0,"son":[{"product_id":"10-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":16},{"product_id":"10-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":16}]}]},{"order_id":"201804121741335209941","symbol":"$","merchants_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","merchants_id":1,"order_status":1,"created_at": "2018-05-03 21:02:00","take_food_time":"21:00","order_grand_total":"5529674.00","take_food_code":null,"items":[{"product_id":"10","product_name":"\u8fd9\u662f\u7b2c10\u4e2a\u83dc","product_counts":5,"product_price":"1222.00","product_parent_id":0,"son":[{"product_id":"8-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":10},{"product_id":"8-4","product_name":"u9009u98791","product_counts":1,"product_price":"5522526.00","product_parent_id":10},{"product_id":"9-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":10}]},{"product_id":"16","product_name":"\u8003\u8651\u8003\u8651","product_counts":4,"product_price":"258.00","product_parent_id":0,"son":[{"product_id":"10-4","product_name":"u9009u98791","product_counts":1,"product_price":"1.00","product_parent_id":16},{"product_id":"10-3","product_name":"u9009u98792","product_counts":1,"product_price":"2.00","product_parent_id":16}]}]}],"total":350}});
-	}
-	else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
-	}
-})
-
-app.get('/api/1.0/web/1.0/user/order/detail', function (req, res) {
-	if(true){
-		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
-	res.send({
-  "status": true,
-  "code": "0",
-  "message": "\\u83b7\\u53d6\\u6570\\u636e\\u6210\\u529f\\uff01",
-  "data": [
-    {
-      "order_id": "20180326115544173009609",
-      "merchants_name": "\\u9ebb\\u8fa3\\u5c0f\\u5f53\\u5bb6",
-      "merchants_id": 24234,
-      "order_status": 1,
-      "created_at": "2018-05-03 21:02:00","take_food_time": "2018-03-26 12:40:00",
-      "order_grand_total": "70.0000",
-      "created_at": "2018-03-26 11:55:45",
-      "pay_type": null,
-      "take_food_code": null,
-      "packing_fee": "0.0000",
-      "coupons_fee": "0.0000",
-      "service_rate": 0,
-      "items": [
-        {
-          "product_id": 356,
-          "product_name": "\\u897f\\u6b27\\u5c0f\\u5403",
-          "product_counts": 2,
-          "product_price": "20.0000"
-        },
-        {
-          "product_id": 654,
-          "product_name": "iv\\u6a58\\u68a8\\u7eb1",
-          "product_counts": 3,
-          "product_price": "10.0000"
-        }
-      ]
-    }
-  ]
-});
-	}
-	else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
 	}
 })
  
@@ -121,330 +63,6 @@ app.post('/api/1.0/web/1.0/user/payment/pay', function (req, res) {
 	}
 })
 
-app.get('/api/1.0/web/1.0/user/payment/sources', function (req, res) {
-	if(true){
-		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
-	res.send({"status":true,"data":{"total":1,"list":[
-	
-	{"sourceId":"card_1CGfPMBOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":1111,"brand":"Master"},
-	{"sourceId":"card_1CEfPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":2222,"brand":"Master"},
-	{"sourceId":"card_1CBfPMFOfYhptLUaknPUzh1x","isDefault":true,"sourceType":"credit","last4":3333,"brand":"Master"},
-	{"sourceId":"card_1CGAPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":4444,"brand":"Master"},
-	{"sourceId":"card_1XGfPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":5555,"brand":"Master"},
-	{"sourceId":"card_1CYfPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":6666,"brand":"Master"},
-	{"sourceId":"card_1CMfPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":7777,"brand":"Master"},
-	{"sourceId":"card_1CVfPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":8888,"brand":"Master"},
-	{"sourceId":"card_1CRfPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":9999,"brand":"Master"},
-	]}});
-	}
-	else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
-	}
-})
-
-app.post('/api/1.0/web/1.0/user/order/checkout', function (req, res) {
-	if(true){
-		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
-	res.send({"status":true,"code":0,"message":"\u4e0b\u5355\u6210\u529f\uff01","data":"201804131812396027209"});
-	}
-	else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
-	}
-})
-
-app.get('/api/1.0/web/1.0/user/order/checkout', function (req, res) {
-	if(true){
-		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
-	res.send({"status":true,"code":0,"message":"\u4e0b\u5355\u6210\u529f\uff01","data":"201804131812396027209"});
-	}
-	else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
-	}
-})
-
-app.get('/api/1.0/web/1.0/user/cart/list', function (req, res) {
-	if(true){
-		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
-	res.send({"status":true,"code":"0","message":"\u83b7\u53d6\u6570\u636e\u6210\u529f\uff01","data":{"shop_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","shop_address":"\u4e5d\u9f99\u7687\u540e\u5927\u9053\u4e1c","prepare_time":1,"vendor_distance":16715.52,"price_total":5524992,"shop_id":"1","product_list":[{"id":2,"product_id":10,"price":1222,"name":"\u8fd9\u662f\u7b2c10\u4e2a\u83dc","product_num":1,"has_package":true,"package":[{"id":8,"name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","son_package":[{"sid":"3","name":"u9009u98792","price":"2"},{"sid":"4","name":"u9009u98791","price":"5522526"}]},{"id":9,"name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","son_package":[{"sid":"3","name":"u9009u98792","price":"2"},{"sid":"2","name":"u9009u98794","price":"5"}]}]},{"id":1,"product_id":10,"price":1222,"name":"\u8fd9\u662f\u7b2c10\u4e2a\u83dc","product_num":1,"has_package":true,"package":[{"id":8,"name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","son_package":[{"sid":"3","name":"u9009u98792","price":"2"},{"sid":"2","name":"u9009u98794","price":"3"}]},{"id":9,"name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","son_package":[{"sid":"2","name":"u9009u98794","price":"5"},{"sid":"4","name":"u9009u98791","price":"1"},{"sid":"3","name":"u9009u98792","price":"2"}]}]}]}})
-	}else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
-	}
-})
-
-app.get('/api/1.0/web/1.0/user/food/detail', function (req, res) {
-	if(true){
-		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
-	res.send({
-            "status": true,
-            "code": 0,
-            "message": "",
-            "data": {
-                "id": 10,
-                "vendor_id": 1,
-                "food_no": "122",
-                "name": "测试菜名1add",
-                "description": "三生三世算是",
-                "logo": "",
-                "price": 1222,
-                "has_package": 1,
-                "type": 2,
-                "type_name": "测试分类名字",
-                "vendor_name": "这个是第1个商户",
-                "operating_status": 2,
-                "business_time": "16:55~12:00",
-                "packages": []
-            }
-        })
-	}else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
-	}
-})
-
-app.get('/api/1.0/web/1.0/user/banner/list', function (req, res) {
-	if(true){
-		res.send({code: 666, message: "ok", status: true, data: {list:[{
-      "jump_url": "https://www.baidu.com/",
-      "image_path": "http://p1.meituan.net/deal/__44172153__6654046.jpg",
-    },{
-      "jump_url": "https://www.baidu.com/",
-      "image_path": "http://p1.meituan.net/deal/0b6e9d622fd22934b12bbad6fb9b28be54079.jpg",
-    },{
-      "jump_url": "https://www.baidu.com/",
-      "image_path": "http://p0.meituan.net/deal/b8123465167c4256f10196060e94c197249808.jpg",
-    }], total:79}});
-	}else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
-	}
-})
-
-app.get('/api/1.0/web/1.0/user/vendor/detail', function (req, res) {
-	if(true){
-		res.send({code: 666, message: "ok", status: true, data: {
-  "id": 1,
-  "name": "aaaa",
-  "description": "tty法师打发斯蒂芬斯蒂芬斯蒂芬斯蒂芬斯蒂芬是",
-  "logo": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521549613549&di=eab3068717056893ec18bf68a7411e12&imgtype=0&src=http%3A%2F%2Fimages.ali213.net%2Fpicfile%2Fpic%2F2013-01-23%2F927_110420130017-18.jpg",
-  "score": 2.5,
-  "tags": "121212,3333,4444",
-  "spend": "67",
-  "prepare_time": 8,
-  "contact": "aaaa",
-  "contact_num": "",
-  "mobile": "11112222",
-  "email": "as@11.com1",
-  "district": 165,
-  "address": "白石洲凡事都经过",
-  "business_time": "5:00 PM - 10:00",
-  "in_business": 0,
-  "status": 2,
-  "bank_info": {
-    "bank_num": "",
-    "bank_owner": "rrrr",
-    "bank_type": ""
-  },
-  "protocol_info": {
-    "start_time": "",
-    "end_time": "",
-    "is_forever": 0,
-    "rate": "12",
-    "settlement_cycle": 0,
-    "remark": "",
-    "status": 0
-  }
-}
-	});
-	}else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
-	}
-})
-
-app.get('/api/1.0/web/1.0/user/food/types', function (req, res) {
-	if(true){
-		res.send({code: 666, message: "ok", status: true, data: {
-  "list": [{
-    "id": 535,
-    "name": "地方撒几方面"
-		},{
-    "id": 5437,
-    "name": "防守打法更换粉丝"
-		},
-		{
-    "id": 5666,
-    "name": "方式登记发票"
-		},{
-    "id": 5437,
-    "name": "防守打法更换粉丝"
-		},
-		{
-    "id": 5666,
-    "name": "方式登记发票"
-		}]
-}
-	});
-	}else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
-	}
-})
-app.get('/api/1.0/web/1.0/user/food/list', function (req, res) {
-	if(true){
-		res.send({code: 666, message: "ok", status: true, data: {
-  "list": [{
-    "id": 1,
-    "name": "xxxx",
-	"jiaqian": 16,
-	"des":"cajsok dnhasoidhn dahsid aiohdia sdhiaos daosiuhd as hdioashd dh aosidh da",
-	"imgUrl": "http://news.k618.cn/society/rd/201804/W020180407271440699691.jpg"
-		},{
-    "id": 1,
-    "name": "xxxx",
-	"jiaqian": 16,
-	"des":"cajsok dnhasoidhn dahsid aiohdia sdhiaos daosiuhd as hdioashd dh aosidh da",
-	"imgUrl": ""
-		},
-		{
-    "id": 1,
-    "name": "xxxx",
-	"jiaqian": 16,
-	"des":"cajsok dnhasoidhn dahsid aiohdia sdhiaos daosiuhd as hdioashd dh aosidh da",
-	"imgUrl": "http://news.k618.cn/society/rd/201804/W020180407271440699691.jpg"
-		}]
-}
-	});
-	}else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
-	}
-})
-
-app.get('/api/1.0/web/1.0/user/vendor/list', function (req, res) {
-	if(req.query.lon == "114.7033538" && req.query.lat == "22.5432757"){
-		res.send({code: 666, message: "ok", status: true, data: {list:[{
-			"id":101,
-      "name": "这个是第425984个商户",
-      "description": "saf蛙教教我吉林省",
-      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
-      "spend": "4",
-	  "score": 3.5,
-	  "distance": 454,
-      "prepare_time": 7,
-      "business_time": "1",
-      "in_business": 0
-    },{
-		"id":102,
-      "name": "这个是第425984个商户",
-      "description": "saf蛙教教我吉林省",
-      "logo": "http://p0.meituan.net/shaitu/12c479a00e2d8bda7cb956f6cdada6dd158915.jpg",
-      "spend": "5",
-      "prepare_time": 8,
-	  "score": 3.5,
-	  "distance": 454,
-      "business_time": "1",
-      "in_business": 4
-    },{
-		"id":103,
-      "name": "这个是第425984个商户",
-      "description": "saf蛙教教我吉林省",
-      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
-      "spend": "6",
-	  "distance": 454,
-      "prepare_time": 9,
-	  "score": 3.5,
-      "business_time": "1",
-      "in_business": 0
-    },{
-		"id":104,
-      "name": "这个是第425984个商户",
-      "description": "saf蛙教教我吉林省",
-      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
-      "spend": "6",
-	  "distance": 454,
-      "prepare_time": 9,
-	  "score": 3.5,
-      "business_time": "1",
-      "in_business": 0
-    },{
-		"id":105,
-      "name": "这个是第425984个商户",
-      "description": "saf蛙教教我吉林省",
-      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
-      "spend": "6",
-	  "distance": 454,
-      "prepare_time": 9,
-	  "score": 3.5,
-      "business_time": "1",
-      "in_business": 0
-    },{
-		"id":106,
-      "name": "这个是第425984个商户",
-      "description": "saf蛙教教我吉林省",
-      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
-      "spend": "6",
-	  "distance": 454,
-      "prepare_time": 9,
-	  "score": 3.5,
-      "business_time": "1",
-      "in_business": 0
-    },{
-		"id":107,
-      "name": "这个是第425984个商户",
-      "description": "saf蛙教教我吉林省",
-      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
-      "spend": "6",
-	  "distance": 454,
-      "prepare_time": 9,
-	  "score": 3.5,
-      "business_time": "1",
-      "in_business": 0
-    },{
-		"id":108,
-      "name": "这个是第425984个商户",
-      "description": "saf蛙教教我吉林省",
-      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
-      "spend": "6",
-	  "distance": 454,
-      "prepare_time": 9,
-	  "score": 3.5,
-      "business_time": "1",
-      "in_business": 0
-    },{
-		"id":109,
-      "name": "这个是第425984个商户",
-      "description": "saf蛙教教我吉林省",
-      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
-      "spend": "6",
-	  "distance": 454,
-      "prepare_time": 9,
-	  "score": 3.5,
-      "business_time": "1",
-      "in_business": 0
-    },{
-		"id":110,
-      "name": "这个是第425984个商户",
-      "description": "saf蛙教教我吉林省",
-      "logo": "http://p0.meituan.net/shaitu/d885715726129ce5784e4a1fae3a9950166083.jpg",
-      "spend": "6",
-	  "distance": 454,
-      "prepare_time": 9,
-	  "score": 3.5,
-      "business_time": "1",
-      "in_business": 0
-    }], total:40}});
-	}else{
-		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
-	}
-})
-
-app.get('/api/user', function (req, res) {
-	if(req.query.token == "abcd1234"){
-		res.send({"data":[{"id":"410000200204153643","name":"Patricia Taylor","age":26},{"id":"320000198509162573","name":"Helen Brown","age":27},{"id":"640000198111107878","name":"William Harris","age":28}]});
-	}else{
-		res.send({name: "", age: "", code: "01", msg: "toke不正确"});
-	}
-})
-
-app.get('/api/version', function (req, res) {
-	res.send({version: "1.3.9", code: "00", msg: "成功"});
-})
- 
 var server = app.listen(8071, function () {
  
   var host = server.address().address
