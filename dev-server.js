@@ -8,8 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // 获取post请求参数需
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type, pageUrl, token');
     next();
 });
 /*
@@ -23,18 +22,21 @@ app.all('*', function(req, res, next) {
     next();
 });
 */
-app.get('/api/1.0/web/1.0/user/payment/sources', function (req, res) {
+app.get('/api/1.0/web/1.0/user/cart/list', function (req, res) {
 	if(true){
-		//res.send({"status":true,"code":0,"message":"","data":{"id":10,"vendor_id":1,"food_no":"122","name":"\u6d4b\u8bd5\u83dc\u540d1add","description":"\u4e09\u751f\u4e09\u4e16\u7b97\u662f","logo":"","price":1222,"has_package":1,"type":2,"type_name":"\u6d4b\u8bd5\u5206\u7c7b\u540d\u5b57","vendor_name":"\u8fd9\u4e2a\u662f\u7b2c1\u4e2a\u5546\u6237","operating_status":2,"business_time":"16:55~12:00","packages":[{"package_id":1,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":4,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":7,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f01","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":8,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f021111","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]},{"package_id":9,"package_name":"\u6d4b\u8bd5\u5957\u9910\u540d\u79f012121","package_type":1,"package_tags":[{"tag_id":"4","tag_name":"u9009u98791","tag_price":"1"},{"tag_id":"3","tag_name":"u9009u98792","tag_price":"2"},{"tag_id":"2","tag_name":"u9009u98794","tag_price":"3"}]}]}});
-	res.send({"status":true,"data":{"total":1,"list":[
+		//res.status(404).send('Sorry, we cannot find that!');
+		//res.status(500).send({ error: 'something blew up' });
+    //res.send({"status":true,"code":0,"message":"\u6578\u64da\u7372\u53d6\u6210\u529f !","data":{"shop_name":"\u9ea6\u5f53\u52b3\uff08\u9884\u552e\u5e97\uff09","shop_address":"\u4e2d\u73af\u5e7f\u573a\u65f6\u4ee3\u5e7f\u573aG\u5c42502","lon":"114.11412975900816","lat":"22.369339301898215","prepare_time":0,"meal_time":"17:00~23:10","operating_status":1,"week_set":"[{\"day\":1,\"time\":[{\"start\":\"00:00\",\"end\":\"10:00\",\"checked\":\"true\"},{\"start\":\"12:00\",\"end\":\"22:00\"}],\"checked\":true},{\"day\":2,\"time\":[{\"start\":\"00:00\",\"end\":\"23:00\",\"checked\":\"false\"}],\"checked\":true},{\"day\":3,\"time\":[{\"start\":\"01:00\",\"end\":\"05:00\",\"checked\":\"false\"}],\"checked\":true},{\"day\":7,\"time\":[{\"start\":\"00:00\",\"end\":\"20:00\",\"checked\":\"false\"}],\"checked\":true}]","use_week":1,"business_time":"00:00~23:00","vendor_distance":259.47,"vendor_type":2,"book_time_type":1,"book_time_value":"2018-11-19~2018-11-30","price_total":"30","coupon":{},"order_msg":"","stocking_time_type":2,"stocking_time":0,"expiry_date_type":2,"expiry_date_value":7,"time":1542703818,"shop_id":"20247","product_list":[{"id":1,"product_id":"16017","price":"30","name":"\u8461\u8404\u6c41","product_num":1,"product_msg":"","limited_stock":0,"stock":0,"product_status":1,"sale_time":""}]}})
 	
+	/*
+	res.send({"status":true,"data":{"total":1,"list":[
 	{"sourceId":"card_1CGfPMBOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":1111,"brand":"Master"},
 	{"sourceId":"card_1CEfPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":2222,"brand":"Master"},
 	{"sourceId":"card_1CBfPMFOfYhptLUaknPUzh1x","isDefault":true,"sourceType":"credit","last4":3333,"brand":"Master"},
 	{"sourceId":"card_1CGAPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":4444,"brand":"Master"},
 	]}});
-	}
-	else{
+	*/
+	} else{
 		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
 	}
 })
