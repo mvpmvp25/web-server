@@ -23,19 +23,20 @@ app.all('*', function(req, res, next) {
 });
 */
 app.get('/api/1.0/web/1.0/user/cart/list', function (req, res) {
+console.log("dsadposaidpo")
 	if(true){
 		//res.status(404).send('Sorry, we cannot find that!');
 		//res.status(500).send({ error: 'something blew up' });
     //res.send({"status":true,"code":0,"message":"\u6578\u64da\u7372\u53d6\u6210\u529f !","data":{"shop_name":"\u9ea6\u5f53\u52b3\uff08\u9884\u552e\u5e97\uff09","shop_address":"\u4e2d\u73af\u5e7f\u573a\u65f6\u4ee3\u5e7f\u573aG\u5c42502","lon":"114.11412975900816","lat":"22.369339301898215","prepare_time":0,"meal_time":"17:00~23:10","operating_status":1,"week_set":"[{\"day\":1,\"time\":[{\"start\":\"00:00\",\"end\":\"10:00\",\"checked\":\"true\"},{\"start\":\"12:00\",\"end\":\"22:00\"}],\"checked\":true},{\"day\":2,\"time\":[{\"start\":\"00:00\",\"end\":\"23:00\",\"checked\":\"false\"}],\"checked\":true},{\"day\":3,\"time\":[{\"start\":\"01:00\",\"end\":\"05:00\",\"checked\":\"false\"}],\"checked\":true},{\"day\":7,\"time\":[{\"start\":\"00:00\",\"end\":\"20:00\",\"checked\":\"false\"}],\"checked\":true}]","use_week":1,"business_time":"00:00~23:00","vendor_distance":259.47,"vendor_type":2,"book_time_type":1,"book_time_value":"2018-11-19~2018-11-30","price_total":"30","coupon":{},"order_msg":"","stocking_time_type":2,"stocking_time":0,"expiry_date_type":2,"expiry_date_value":7,"time":1542703818,"shop_id":"20247","product_list":[{"id":1,"product_id":"16017","price":"30","name":"\u8461\u8404\u6c41","product_num":1,"product_msg":"","limited_stock":0,"stock":0,"product_status":1,"sale_time":""}]}})
 	
-	/*
+	
 	res.send({"status":true,"data":{"total":1,"list":[
 	{"sourceId":"card_1CGfPMBOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":1111,"brand":"Master"},
 	{"sourceId":"card_1CEfPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":2222,"brand":"Master"},
 	{"sourceId":"card_1CBfPMFOfYhptLUaknPUzh1x","isDefault":true,"sourceType":"credit","last4":3333,"brand":"Master"},
 	{"sourceId":"card_1CGAPMFOfYhptLUaknPUzh1x","isDefault":false,"sourceType":"credit","last4":4444,"brand":"Master"},
 	]}});
-	*/
+	
 	} else{
 		res.send({code: 333, message: "fail", status: false, data: {list:[], total:2}});
 	}
@@ -54,6 +55,7 @@ app.get('/api/user', function (req, res) {
 })
 
 app.post('/api/login', function (req, res) {
+	console.log(req.body)
 	if(req.body.userMobile == "123" && req.body.passWord == "abc"){
 		res.send({token: "abcd1234", code: "00", msg: "成功"});
 	}else{
